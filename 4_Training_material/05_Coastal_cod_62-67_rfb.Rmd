@@ -1,0 +1,62 @@
+---
+title: "Norwegian case study 2 - <br /> Coastal cod 62-67&deg;N: rfb rule"
+subtitle: "Cali workshop - May 26<sup>th</sup>-29<sup>th</sup>, 2025"
+author: "Hector Antonio Andrade Rodriguez, Yves Reecht"
+institute: 'Institute of Marine Research
+  [ <img src="https://www.hi.no/en/hi/resources/layout/HI-logo-farger-engelsk.svg/original" alt="Institute of Marine Research" width="55"/>](https://www.hi.no/en)'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "theme.css"]
+    lib_dir: libs
+    self_contained: true
+    nature:
+      ratio: '16:9'
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+<!-- Layout options and styles -->
+```{r preamble, include=FALSE, cache=FALSE}
+source(file.path(getwd(), "preamble.R"))
+do.call(knitr::opts_chunk$set, knitr_opts)
+```
+<!-- Packages to load -->
+```{r libs, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(LBSPR)
+```
+
+# Background
+
+
+---
+
+# Available data
+
+
+---
+
+# Chose approach
+
+---
+
+# Uncertainty
+
+---
+
+# Shortcomings
+
+---
+
+# Conclusions
+
+
+
+
+<!-- Local Variables: -->
+<!-- coding: utf-8 -->
+<!-- ispell-local-dictionary: "english" -->
+<!-- fill-column: 100 -->
+<!-- End: -->
