@@ -6,7 +6,7 @@ institute: 'Institute of Marine Research
   [ <img src="https://www.hi.no/en/hi/resources/layout/HI-logo-farger-engelsk.svg/original" alt="Institute of Marine Research" width="55"/>](https://www.hi.no/en)'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "theme.css"]
+    css: [default, hygge-duke, "xaringan-themer.css", "theme.css"]
     lib_dir: libs
     nature:
       ratio: '16:9'
@@ -30,8 +30,7 @@ library(LBSPR)
 
 # Life history and relevance of model assumptions
 
-
-  * Fast growth (k=) and high natural mortality (M=) => rather typical $M/k \approx 1.5$.
+  * Fast growth ($k = 1.3$) and high natural mortality ($M = 1.26$) => rather typical $M/k \approx 1$.
 
 --
 
@@ -41,49 +40,40 @@ library(LBSPR)
 
   * In equatorial region, reproduction and growth throughout the year...
 
-  * ...but fishery is seasonal in Colombia (Nov.-Mar.)
+    * ...but fishery is seasonal in Colombia (Nov.-Mar.)
+
+    * What about seasonality in fishing by other countries?
 
 --
 
-  **=> Is the equilibrium assumption reasonable?**
+  **=> Is the equilibrium assumption reasonable?**<br />
+
+<br />
+
+.content-box-yellow[Importance to look at how the size composition and estimates vary through the fishing season!]
+
+
+---
+
+## A mobile population:
+
+
+.pull-left[
+<img src="./img/Dorado_migration_Minte-Vera_2024.png" alt="CM Dorado migration" width="100%">
+
+<small>Conceptual model of Dorado spatial distribution and movements, from a regional workshop in
+2016, from [Minte-Vera *et al.*
+(2024)](https://linkinghub.elsevier.com/retrieve/pii/S0165783624001991)</small>
+]
 
 --
 
-  Importance to look at how the size composition and estimates vary through the fishing season!
+.pull-right[
 
----
+* Are the data **representative of the underlying population size composition?**
 
-# Available data
-
----
-
-# Data exploration and preparation
-
----
-
-# LB-SPR 2024-2025
-
----
-
-## Yearly
-
----
-
-## Monthly
-
----
-
-# Uncertainty
-
----
-
-# Shortcomings
-
----
-
-# Conclusions
-
-
+* Is the selectivity in Colombian waters **representative of the selectivity in other fisheries affecting the stock?**
+]
 
 
 <!-- Local Variables: -->
