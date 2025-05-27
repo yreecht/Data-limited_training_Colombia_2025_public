@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ### File: 03-3_LBSPR_bootstrap.R
-### Time-stamp: <2025-05-27 21:29:50 a23579>
+### Time-stamp: <2025-05-27 21:34:28 a23579>
 ###
 ### Created: 27/05/2025	05:12:35
 ### Author: Yves Reecht
@@ -160,38 +160,6 @@ L_raised_y <- new("LB_lengths",
                   dataType = "freq", header = TRUE)
 
 
-## Run on successive years and assemble:
-paramObsUncert <- sapply(L_raised_m@Years, # That's just some sort of loops over "Years".
-                         function(y)
-                  {
-                      resy <- cbind(Year = y, # Add the "Year" (month actually)
-                                    LBSPR.sizeBoot.binned(LBata = L_raised_m,
-                                                          LBpars = parsDorado,
-                                                          nboot = 100,
-                                                          year = y) %>%
-                                    as.data.frame() %>%
-                                    tibble::rownames_to_column("Parameter"))
-                  }, simplify = FALSE) %>% # returns a list odf tables...
-    bind_rows()                            # ...which can be assembled in one table
-
-
-## Multi-panel plots:
-paramObsUncert2 <- paramObsUncert %>%
-    mutate(paramCat = gsub("[[:digit:]]+", "", Parameter)) # Grouping SL50 and SL95 in one parameter type.
-
-
-ggplot(data = paramObsUncert2,
-       aes(x = Year, y = median, group = Parameter, shape = Parameter)) +
-    geom_point() +
-    geom_errorbar(aes(ymin = lower, ymax = upper),
-                  width = 0.2) +
-    facet_wrap(~paramCat, ncol = 3, scales = "free_y") +
-    xlab("Month") + ylab("Estimate (median + 95% CI)") +
-    ylim(0, NA) +
-    theme_bw()
-
-X11() # new graphic windows
-plotSize(L_raised_m) # Less data for March => SPR estimate more uncertain
 
 
 
