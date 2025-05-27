@@ -91,7 +91,7 @@ Reminder from last lecture:
 
 At equilibrium (constant recruitment and mortality), with fishing, 
 
-  * Selectivity is often considered sigmoidal (i.e. logistic curve)...
+  * Selectivity is often considered sigmoidal (*i.e.* logistic curve)...
 
   * ...other (non-asymptotic) selectivities could be theoretically used to estimate the equilibrium.
 
@@ -723,17 +723,27 @@ Empirical evidence is quite difficult to gather, as evaluating management strate
   
   (I hope I managed to convinced you of that one!)
 
-* tested and validated using MSE (refs.)
+* tested and validated using MSE (Hordyk *et al.* 2015, Chong *et al.* 2020)
 
 => widely used, and endorsed by scientifc organisations such as ICES.
 
 
-<br />
-***
+<br /> 
+*** 
+
 <small>Prince, J., Creech, S., Madduppa, H., and Hordyk, A. 2020. Length based assessment of spawning
 potential ratio in data-poor fisheries for blue swimming crab (Portunus spp.) in Sri Lanka and
 Indonesia: Implications for sustainable management. Regional Studies in Marine Science,
-36: 101309. https://doi.org/10.1016/j.rsma.2020.101309.  </small>
+36: 101309. https://doi.org/10.1016/j.rsma.2020.101309.  
+
+Hordyk, A. R., Loneragan, N. R., and Prince, J. D. 2015. An evaluation of an
+iterative harvest strategy for data-poor fisheries using the length-based spawning potential ratio
+assessment methodology. Fisheries Research, 171:
+20–32. https://doi.org/10.1016/j.fishres.2014.12.018.
+
+Chong, L., Mildenberger, T. K., Rudd, M. B., Taylor, M. H., Cope, J. M., Branch, T. A., Wolff, M.,
+et al. 2020. Performance evaluation of data-limited, length-based stock assessment methods. ICES
+Journal of Marine Science, 77: 97–108. https://doi.org/10.1093/icesjms/fsz212.  </small>
 
 ---
 
@@ -746,13 +756,34 @@ It also has a few flaws:
 * only implemented for an asymptotic, mono-modal fisheries selectivity, while dome-shaped
   selectivity is not-uncommon.
 
-* sensitivity to input parameters, some of which are quite uncertain in most cases (refs.)... that
-  is true of so many assessment methods, including data rich, though!
+* sensitivity to input parameters, some of which are quite uncertain in most cases (Hordyk *et
+  al.* 2015; Miethe *et al.* 2019, when it comes to the particular case of deriving reference
+  points)...  
+  that is true of so many assessment methods, including data rich, though!
 
 * as of now, not able to impose some correlation on estimates among years (*e.g.* selectivity, if
   one knows that practices/fishing patterns are not changing much among years).
 
 * may "spit" seemingly consistent results, however poor one's choice of data and LHT is.
+
+<br />
+***
+
+<small>Hordyk, A., Ono, K., Valencia, S., Loneragan, N., and Prince, J. 2015. A novel length-based
+empirical estimation method of spawning potential ratio (SPR), and tests of its performance, for
+small-scale, data-poor fisheries. ICES Journal of Marine Science, 72:
+217–231. https://doi.org/10.1093/icesjms/fsu004.
+
+Miethe, T., Reecht, Y., and Dobby, H. 2019. Reference points for the length-based indicator Lmax5%
+for use in the assessment of data-limited stocks. ICES Journal of Marine Science, 76:
+2125–2139. https://doi.org/10.1093/icesjms/fsz158.  </small>
+
+
+---
+
+class: center, middle
+
+# Thanks for your attention!
 
 
 <!-- Local Variables: -->
