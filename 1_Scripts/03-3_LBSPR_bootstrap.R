@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ### File: 03-3_LBSPR_bootstrap.R
-### Time-stamp: <2025-05-27 16:57:34 a23579>
+### Time-stamp: <2025-05-27 21:29:50 a23579>
 ###
 ### Created: 27/05/2025	05:12:35
 ### Author: Yves Reecht
@@ -43,18 +43,12 @@ parsDorado@L_units <- "cm"
 parsDorado@BinMin <- 0
 parsDorado@BinWidth <- 5
 
-
-L_raised_m <- new("LB_lengths",
+## Load data
+L_raised_m25 <- new("LB_lengths",
                   LB_pars = parsDorado,
-                  file = file.path(dataDir, "Dorado_raised_months_24.csv"),
-                  dataType = "freq",
+                  file = file.path(dataDir, "Dorado furcal23_25 month revised.csv"),
+                  dataType = "raw",
                   header = TRUE)
-
-
-L_raised_y <- new("LB_lengths",
-                  LB_pars = parsDorado,
-                  file = file.path(dataDir, "Dorado_raised_24.csv"), 
-                  dataType = "freq", header = TRUE)
 
 
 LBSPR.sizeBoot.binned <- function(LBata, LBpars, nboot = 1000, year = 1,
@@ -107,13 +101,63 @@ LBSPR.sizeBoot.binned <- function(LBata, LBpars, nboot = 1000, year = 1,
 }
 
 ## Test it:
-test <- LBSPR.sizeBoot.binned(LBata = L_raised_m,
+test <- LBSPR.sizeBoot.binned(LBata = L_raised_m25,
                               LBpars = parsDorado,
                               nboot = 10,
                               year = 1)
 
 class(test)
 test
+
+
+
+paramObsUncert25 <- sapply(seq_along(L_raised_m25@Years), # That's just some sort of loops over "Years".
+                           function(y)
+                    {
+                        resy <- cbind(Year = y, # Add the "Year" (month actually)
+                                      LBSPR.sizeBoot.binned(LBata = L_raised_m25,
+                                                            LBpars = parsDorado,
+                                                            nboot = 100,
+                                                            year = y) %>%
+                                      as.data.frame() %>%
+                                      tibble::rownames_to_column("Parameter"))
+                    }, simplify = FALSE) %>% # returns a list odf tables...
+    bind_rows()                            # ...which can be assembled in one table
+
+
+## Multi-panel plots:
+paramObsUncert25 <- paramObsUncert25 %>%
+    mutate(paramCat = gsub("[[:digit:]]+", "", Parameter)) # Grouping SL50 and SL95 in one parameter type.
+
+
+ggplot(data = paramObsUncert25,
+       aes(x = Year, y = median, group = Parameter, shape = Parameter)) +
+    geom_point() +
+    geom_errorbar(aes(ymin = lower, ymax = upper),
+                  width = 0.4) +
+    facet_wrap(~paramCat, ncol = 3, scales = "free_y") +
+    xlab("Month") + ylab("Estimate (median + 95% CI)") +
+    ylim(0, NA) +
+    theme_bw()
+
+X11() # new graphic windows
+plotSize(L_raised_m25) # Less data for March => SPR estimate more uncertain
+
+## ##################################################
+## Exercise: Same with the raised data 2024
+
+
+L_raised_m <- new("LB_lengths",
+                  LB_pars = parsDorado,
+                  file = file.path(dataDir, "Dorado_raised_months_24.csv"),
+                  dataType = "freq",
+                  header = TRUE)
+
+
+L_raised_y <- new("LB_lengths",
+                  LB_pars = parsDorado,
+                  file = file.path(dataDir, "Dorado_raised_24.csv"), 
+                  dataType = "freq", header = TRUE)
 
 
 ## Run on successive years and assemble:
