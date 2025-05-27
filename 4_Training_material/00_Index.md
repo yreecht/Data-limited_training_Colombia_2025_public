@@ -29,8 +29,9 @@ first presentation [Generalities and sharing policy](./01-1_Generalities_and_sha
 
   **Day 2**
 
-  1. [Introduction to LB-SPR](./02_Introduction_LBSPR.html)
-  2. [LB-SPR -- Dolphin fish case study](./03_Taller_Colombia_2025.pptx) (.ppt)
+  1. [Dolphin fish life histories](./03_Taller_Colombia_2025.pptx) (.ppt)
+  2. [Introduction to LB-SPR](./02_Introduction_LBSPR.html)
+  3. [LB-SPR -- Dolphin fish case study](./03_LBSPR_case_study_Dorado.html)
 
   **Day 3**
 

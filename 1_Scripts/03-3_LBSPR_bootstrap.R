@@ -193,14 +193,6 @@ ggplot(data = paramObsUncert2,
 X11() # new graphic windows
 plotSize(L_raised_m) # Less data for March => SPR estimate more uncertain
 
-## ##################################################
-## Exercise: Same with 2023-2025 data
-
-L_raised_m25 <- new("LB_lengths",
-                  LB_pars = parsDorado,
-                  file = file.path(dataDir, "Dorado furcal23_25 month revised.csv"),
-                  dataType = "raw",
-                  header = TRUE)
 
 
 ### Local Variables:
