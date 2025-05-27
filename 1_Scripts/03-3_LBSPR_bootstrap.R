@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ### File: 03-3_LBSPR_bootstrap.R
-### Time-stamp: <2025-05-27 21:34:28 a23579>
+### Time-stamp: <2025-05-27 21:35:52 a23579>
 ###
 ### Created: 27/05/2025	05:12:35
 ### Author: Yves Reecht
@@ -141,7 +141,7 @@ ggplot(data = paramObsUncert25,
     theme_bw()
 
 X11() # new graphic windows
-plotSize(L_raised_m25) # Less data for March => SPR estimate more uncertain
+plotSize(L_raised_m25) # Less data for last months => SPR estimate extremely uncertain
 
 ## ##################################################
 ## Exercise: Same with the raised data 2024
