@@ -75,6 +75,88 @@ library(LBSPR)
 * Is the selectivity in Colombian waters **representative of the selectivity in other fisheries affecting the stock?**
 ]
 
+---
+
+# Exercise 1: LBSPR fitting
+
+[Script `1_Scripts/03-1_LBSPR_dorado23_25_revised.R`](../1_Scripts/03-1_LBSPR_dorado23_25_revised.R)
+
+
+---
+
+# Exercise 2: size composition raising
+
+.pull-left[
+```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="80%"}
+
+catch1 <- rnorm(n = 1000, mean = 70, sd = 6)
+sample1 <- sample(catch1, size = 100)
+
+catch2 <- rnorm(200, 80, 7)
+sample2 <- sample(catch2, size = 100)
+
+catch3 <- rnorm(20, 90, 10)
+sample3 <- catch3
+
+catSamp <- rbind(data.frame(Op = 1, type = "catch", size = catch1),
+                 data.frame(Op = 2, type = "catch", size = catch2),
+                 data.frame(Op = 3, type = "catch", size = catch3),
+                 data.frame(Op = 1, type = "sample", size = sample1),
+                 data.frame(Op = 2, type = "sample", size = sample2),
+                 data.frame(Op = 3, type = "sample", size = sample3))
+
+ggplot(catSamp, aes(x = size, fill = type)) +
+    geom_histogram(alpha = 0.4, position = "identity") +
+    facet_wrap(~Op)
+
+```
+]
+.pull-right[
+```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="80%"}
+df <- catSamp %>%
+    group_by(type) %>%
+    summarize(size = mean(size))
+
+ggplot(catSamp, aes(x = size, fill = type)) +
+    geom_histogram(alpha = 0.4, position = "identity") +
+    geom_point(data = df,
+               aes(colour = type),
+               y = 0, size = 3)
+```
+]
+
+[Script `1_Scripts/03-2_LBSPR_size_composition_raising.R`](../1_Scripts/03-2_LBSPR_size_composition_raising.R)
+
+
+---
+
+# Exerise 3: Observation error (bootstrap)
+
+What are the uncertainties you have seen so far in LBSPR outputs (*e.g.* `plotSize(...)`)?
+
+Description of the different types can be found in the [introduction
+lecture](file:///home/a23579/Documents/Expertise/5_Training/Data_poor_Colombia_2024/Data-limited_training_Colombia_2025_public/4_Training_material/01-2_Introduction_data-limited_assessment.html#22).
+
+--
+
+### How to estimate the observation error?
+
+--
+
+We can use bootstrap: resampling from the observed distribution, keeping the same sample size.
+
+To resample from binned data (more straightforward with LBSPR), we can use the multinomial distribution:
+
+```{r, eval = FALSE, echo = TRUE}
+year <- 1 #One year at a time
+
+rmultinom(n = 100,                            # number of bootstrap
+          size = sum(LB_length@LData[, year]) # total number of individuals,
+          prob = LB_length@LData[, year])     # number per size class -> automatically rescaled to sum to 1 #<<
+```
+
+[Script `1_Scripts/03-3_LBSPR_bootstrap.R`](../1_Scripts/03-3_LBSPR_bootstrap.R)
+
 
 <!-- Local Variables: -->
 <!-- coding: utf-8 -->
