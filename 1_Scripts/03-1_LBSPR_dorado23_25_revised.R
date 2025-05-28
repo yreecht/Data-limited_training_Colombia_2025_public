@@ -52,3 +52,4 @@ plotSize(myFit3, size.axtex = 8)
 plotMat(myFit3)
 plotEsts(myFit3)
 
+myFit3@Years <- seq_along(myFit3@Years)

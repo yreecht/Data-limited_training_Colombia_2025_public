@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ### File: 03-3_LBSPR_bootstrap.R
-### Time-stamp: <2025-05-27 21:35:52 a23579>
+### Time-stamp: <2025-05-29 00:13:33 a23579>
 ###
 ### Created: 27/05/2025	05:12:35
 ### Author: Yves Reecht
@@ -61,7 +61,8 @@ LBSPR.sizeBoot.binned <- function(LBata, LBpars, nboot = 1000, year = 1,
     ## ----------------------------------------------------------------------
     ## Author: Yves Reecht, Date:  4 Sep 2019, 15:23
 
-    require(coda)
+    if (! require(coda)) install.package("coda")
+    library(coda)
 
     ## Bootstrap of the binned length data:
     LenDat <- LBata@LData[, year]
@@ -84,7 +85,8 @@ LBSPR.sizeBoot.binned <- function(LBata, LBpars, nboot = 1000, year = 1,
                       YPR = LBres@YPR,
                       SL50 = LBres@SL50,
                       SL95 = LBres@SL95,
-                      FM = LBres@FM)
+                      FM = LBres@FM,
+                      Nboot = nboot)
 
     ## Calculate the HDR:
     resHDR <- cbind(median = sapply(res[ , c("SPR", "FM", "SL50", "SL95")],
@@ -147,19 +149,13 @@ plotSize(L_raised_m25) # Less data for last months => SPR estimate extremely unc
 ## Exercise: Same with the raised data 2024
 
 
-L_raised_m <- new("LB_lengths",
-                  LB_pars = parsDorado,
-                  file = file.path(dataDir, "Dorado_raised_months_24.csv"),
-                  dataType = "freq",
-                  header = TRUE)
+L_truncated_m <- new("LB_lengths",
+                     LB_pars = parsDorado,
+                     file = file.path(dataDir, "Dorado furcal23_25 month revised_truncated.csv"),
+                     dataType = "raw",
+                     header = TRUE)
 
-
-L_raised_y <- new("LB_lengths",
-                  LB_pars = parsDorado,
-                  file = file.path(dataDir, "Dorado_raised_24.csv"), 
-                  dataType = "freq", header = TRUE)
-
-
+## Dorado furcal23_25 month revised_truncated
 
 
 
