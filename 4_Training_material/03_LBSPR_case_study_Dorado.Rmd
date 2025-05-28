@@ -87,16 +87,21 @@ library(LBSPR)
 # Exercise 2: size composition raising
 
 .pull-left[
-```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="80%"}
+```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="100%"}
+library(ggplot2)
+library(dplyr)
 
 catch1 <- rnorm(n = 1000, mean = 70, sd = 6)
 sample1 <- sample(catch1, size = 100)
+raised1 <- rep(sample1, 10)
 
 catch2 <- rnorm(200, 80, 7)
 sample2 <- sample(catch2, size = 100)
+raised2 <- rep(sample2, 2)
 
 catch3 <- rnorm(20, 90, 10)
 sample3 <- catch3
+raised3 <- sample3
 
 catSamp <- rbind(data.frame(Op = 1, type = "catch", size = catch1),
                  data.frame(Op = 2, type = "catch", size = catch2),
@@ -105,6 +110,11 @@ catSamp <- rbind(data.frame(Op = 1, type = "catch", size = catch1),
                  data.frame(Op = 2, type = "sample", size = sample2),
                  data.frame(Op = 3, type = "sample", size = sample3))
 
+catSamp2 <- rbind(catSamp,
+                  data.frame(Op = 1, type = "raised", size = raised1),
+                  data.frame(Op = 2, type = "raised", size = raised2),
+                  data.frame(Op = 3, type = "raised", size = raised3))
+                  
 ggplot(catSamp, aes(x = size, fill = type)) +
     geom_histogram(alpha = 0.4, position = "identity") +
     facet_wrap(~Op)
@@ -112,16 +122,35 @@ ggplot(catSamp, aes(x = size, fill = type)) +
 ```
 ]
 .pull-right[
-```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="80%"}
-df <- catSamp %>%
+
+]
+
+---
+
+# Exercise 2: size composition raising
+
+.pull-left[
+```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="100%"}
+ggplot(catSamp2, aes(x = size, fill = type)) +
+    geom_histogram(alpha = 0.4, position = "identity") +
+    facet_wrap(~Op)
+
+```
+]
+
+--
+
+.pull-right[
+```{r, echo = FALSE, results = "asis", fig.asp=6/7, out.width="100%"}
+df <- catSamp2 %>%
     group_by(type) %>%
     summarize(size = mean(size))
 
-ggplot(catSamp, aes(x = size, fill = type)) +
+ggplot(catSamp2, aes(x = size, fill = type)) +
     geom_histogram(alpha = 0.4, position = "identity") +
     geom_point(data = df,
-               aes(colour = type),
-               y = 0, size = 3)
+               aes(colour = type, y = 0, shape = "Mean size"),
+               size = 3, alpha = 0.8, position = position_jitter(height = 2))
 ```
 ]
 
