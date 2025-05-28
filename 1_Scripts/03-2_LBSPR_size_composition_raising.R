@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 
 ### File: 03-2_Size_composition_raising.R
-### Time-stamp: <2025-05-27 05:10:12 a23579>
+### Time-stamp: <2025-05-28 20:19:00 a23579>
 ###
 ### Created: 27/05/2025	02:22:56
 ### Author: Yves Reecht
@@ -23,7 +23,7 @@ library(cowplot)
 library(LBSPR)
 library(forcats)
 
-scriptDir <- normalizePath("./1_Scripts")
+scriptDir <- normalizePath("./1_Scripts") # Assumes that your R session is working in the base directory.
 dataDir <- normalizePath("./2_Data")
 
 source(file.path(scriptDir, "0_Functions.R"))
@@ -75,7 +75,7 @@ ggplot(data = catch_data.bio,
 
 ## Generating binned and tabulated data:
 
-Linf <- 168.6
+Linf <- 168.6 # Need it as must be in the bin range.
 
 step <- 5
 breaks <- seq(from = 0, ##step * (min(size_data$CL, na.rm = TRUE) %/% step),
@@ -236,6 +236,7 @@ parsDorado@L95 <- 55*1.15 #Prince et al. 2022. Prince pers. communication
 parsDorado@MK <- 1.26/ 1.3   #  M composite inverse based on the natural mortality tool     
 parsDorado@Walpha <- 0.0632 #our data WT
 parsDorado@Wbeta <- 2.443  #our data WT
+parsDorado@FecB <- parsDorado@Wbeta
 parsDorado@L_units <- "cm"
 
 parsDorado@BinMin <- 0

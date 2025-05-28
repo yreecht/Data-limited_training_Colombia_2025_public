@@ -10,9 +10,10 @@ MyPars@Linf <- 168.6  # (Lopez-Martinez et al. 2024)
 MyPars@CVLinf <- 0.15 
 MyPars@L50 <- 55 #Molto et al. 2020 
 MyPars@L95 <- 55*1.15 #Prince et al. 2022. Prince pers. communication
-MyPars@MK <- 1.31/ 1.3   #  M composite inverse based on the natural mortality tool     
+MyPars@MK <- 1.26/ 1.3   #  M composite inverse based on the natural mortality tool     
 MyPars@Walpha <- 0.0632 #our data WT
 MyPars@Wbeta <- 2.443  #our data WT
+MyPars@FecB <- MyPars@Wbeta # No reasons why the fecundity should scale differently than weight with length
 MyPars@L_units <- "cm"
 
 #A raw length data set for only 2024:
